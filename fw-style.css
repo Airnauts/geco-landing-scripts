@@ -78,7 +78,7 @@ body {
   width: 30px;
   height: 30px;
   position: absolute;
-  background: url("coin-small.png") center center/contain no-repeat;
+  background: url("fw-coin-small.png") center center/contain no-repeat;
 }
 
 #banner {
