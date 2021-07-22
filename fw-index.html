@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>100%x300</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1">
+	<link href="fw-style.css" rel="stylesheet">
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.2/TweenMax.min.js"></script>
+    <script type="text/javascript">
+        var clickTag = "https://www.geco.one/buy-tokens"; 
+    </script>
+</head> 
+<body> 
+	<div id="banner" onclick="javascript:window.open(window.clickTag)">
+		<div id="banner__inner">
+            <div id="sparkle-container"></div>
+            
+            <img class="last-chance" src="fw-last-chance.png" alt="" />
+
+            <div class="txt1">
+                <span class="txt1__txt1">Join the sale of</span>
+                <span class="txt1__txt2">GEC Token</span>
+                <img class="logo" src="fw-logo.svg" />
+            </div>
+
+
+            <div class="gecoin">
+                <img class="gecoin__coin" src="fw-gecoin.png" />
+                <div class="gecoin__circle gecoin__circle--1"></div>
+                <div class="gecoin__circle gecoin__circle--2"></div>
+                <div class="gecoin__circle gecoin__circle--3"></div>
+            </div>
+
+            <div class="countdown">
+                <div class="countdown__txt1">HURRY UP!</div>
+                <div class="countdown__txt2">The sale is closing in</div>
+                <div class="countdown__inner">
+                    <div class="countdown__inner__line"></div>
+                    <div id="days" class="countdown__inner__item countdown__inner__days"></div>
+                    <div id="hours" class="countdown__inner__item countdown__inner__hours"></div>
+                    <div id="minutes" class="countdown__inner__item countdown__inner__minutes"></div>
+                    <div id="seconds" class="countdown__inner__item countdown__inner__seconds"></div>
+                </div>
+            </div>
+            
+            <div class="cta">
+                <div class="cta__light"></div>
+                <img src="fw-cta.svg" alt="" />
+            </div>
+		</div>
+	</div>
+	
+	<script>
+        var tl = new TimelineMax({repeat: -1}),
+            tlCtaLight = new TimelineMax({repeat: -1}) 
+            tlTimelineText = new TimelineMax({repeat: -1}),
+            tlCta = new TimelineMax();
+        
+        tl
+            .set('#banner__inner',{autoAlpha: 1, force3D: true, transformStyle: "preserve-3d", rotationZ: 0.001})
+            .set('.last-chance, .txt1',{xPercent: -50}) 
+            .set('.cta, .countdown',{xPercent: 50}) 
+            .set('.cta__light',{x: '-125%', skewX: '-15deg'}) 
+            .set('.gecoin__circle, .gecoin',{xPercent: -50, yPercent: -50})  
+            
+            .addLabel('klatka1', '+=0.5')  
+                .staggerFrom('.txt1 *',1,{y: '50px', autoAlpha: 0, ease:Elastic.easeOut.config(1, 0.75), force3D: true, transformStyle: "preserve-3d"}, 0.1, 'klatka1')
+                .staggerFrom('.gecoin *',1,{scale: 2, autoAlpha: 0, ease:Elastic.easeOut.config(1, 0.75), force3D: true, transformStyle: "preserve-3d"}, 0.1, 'klatka1')
+                .from('.last-chance',0.5,{y: '-50px', ease:Power4.easeOut, force3D: true, transformStyle: "preserve-3d"}, 'klatka1+=1')
+
+            .to('.gecoin__coin',1.5,{rotationY: '360deg', delay: 1, ease:Elastic.easeInOut.config(1, 0.75), force3D: true, transformStyle: "preserve-3d"})
+            .to('.gecoin__coin',1.5,{rotationY: '0deg', delay: 2, ease:Elastic.easeInOut.config(1, 0.75), force3D: true, transformStyle: "preserve-3d"})
+
+            .addLabel('last') 
+                .staggerTo('.txt1 *',1,{y: '-50px', autoAlpha: 0, ease:Elastic.easeIn.config(1, 0.75), force3D: true, transformStyle: "preserve-3d"}, -0.1, 'last')
+                .staggerTo('.gecoin *',1,{scale: 2, autoAlpha: 0, ease:Elastic.easeIn.config(1, 0.75), force3D: true, transformStyle: "preserve-3d"}, 0.1, 'last')
+                .to('.last-chance',0.5,{y: '-50px', ease:Power4.easeIn, force3D: true, transformStyle: "preserve-3d"}, 'last')
+        ;
+
+        tlTimelineText
+            .from('.countdown__txt1',0.5,{y: '25px', autoAlpha: 0, ease:Elastic.easeOut.config(1,0.75), force3D: true, transformStyle: "preserve-3d"})
+            .to('.countdown__txt1',0.5,{y: '-25px', delay: 1, autoAlpha: 0, ease:Elastic.easeIn.config(1,0.75), force3D: true, transformStyle: "preserve-3d"})
+
+            .from('.countdown__txt2',0.5,{y: '25px', autoAlpha: 0, ease:Elastic.easeOut.config(1,0.75), force3D: true, transformStyle: "preserve-3d"})
+            .to('.countdown__txt2',0.5,{y: '-25px', delay: 1.5, autoAlpha: 0, ease:Elastic.easeIn.config(1,0.75), force3D: true, transformStyle: "preserve-3d"})
+        ;
+
+        tlCta
+            .to('.cta',0.5,{scale: 1.1, yoyo: true, repeat: -1, ease:Power1.easeInOut, force3D: true, transformStyle: "preserve-3d"})
+
+        tlCtaLight
+            .to('.cta__light',0.5,{x: '600%', ease:Power0.easeNone, delay: 3, force3D: true, transformStyle: "preserve-3d"})
+            .set('.cta__light',{x: '-125%'}) 
+            .to('.cta__light',0.5,{x: '600%', ease:Power0.easeNone, force3D: true, transformStyle: "preserve-3d"}) 
+        ;
+    </script>
+
+    <script>
+        var total=4,
+            container = document.getElementById('sparkle-container'),
+            dot = document.getElementsByClassName('sparkle'),
+            w = document.getElementById("banner__inner").offsetWidth,
+            h = document.getElementById("banner__inner").offsetHeight;
+        
+        function randomNumber(min, max){
+            return Math.floor(Math.random() * (1 + max - min) + min);
+        }
+
+        for (var i = 0; i < total; i++) {
+            var div=document.createElement('div');
+            //TweenLite.set(div,{attr:{class:'sparkle'},x:R(w),y:h + 10,opacity:1});
+            TweenLite.set(div,{attr:{class:'sparkle'},x: R(w),y: -40, scale:R(1)+0.25}); 
+            container.appendChild(div);	Anim(div);
+        }
+        
+        function Anim(elm){ 
+            //TweenMax.to(elm, R(1)+5,{bezier:{values:[{x: 0,y: R(h)},{x: w + 15, y: h - 15}]}, repeat: -1,  scale:R(1)+0.5, delay:R(5), ease:Power0.easeNone});
+            TweenMax.to(elm, R(2)+3,{bezier:{values:[{x: 40,y: R(h)},{x: w - 250, y: h - 80}]}, repeat: -1, delay:R(5), rotationY: '720deg', ease:Power0.easeNone});
+        };
+            
+        function R(max){return Math.random()*max};
+    </script>
+
+    <script>
+        // Set the date we're counting down to
+        var countDownDate = new Date("Aug 1, 2021 00:00:00").getTime();
+        
+        // Update the count down every 1 second
+        var x = setInterval(function() {
+        
+        // Get today's date and time
+        var now = new Date().getTime();
+            
+        // Find the distance between now and the count down date
+        var distance = countDownDate - now;
+            
+        // Time calculations for days, hours, minutes and seconds
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        if (days < 10) {days = "0" + days;}
+        if (hours < 10) {hours = "0" + hours;}
+        if (minutes < 10) {minutes = "0" + minutes;}
+        if (seconds < 10) {seconds = "0" + seconds;}
+  
+        // Output the result in an element with id="demo"
+        document.getElementById("days").innerHTML = days;
+        document.getElementById("hours").innerHTML = hours;
+        document.getElementById("minutes").innerHTML = minutes;
+        document.getElementById("seconds").innerHTML = seconds;
+            
+        // If the count down is over, write some text 
+        if (distance < 0) {
+            clearInterval(x);
+            document.getElementById("demo").innerHTML = "EXPIRED";
+        }
+        }, 1000);
+    </script>
+</body>
+</html>
